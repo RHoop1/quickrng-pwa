@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Import useCallback
 
 // Main App component for the QuickRNG application
 const App = () => {
@@ -10,14 +10,9 @@ const App = () => {
   // State for background gradient, allowing for dynamic changes (kept for your testing)
   const [backgroundGradient, setBackgroundGradient] = useState('from-purple-600 to-blue-500');
 
-  // Effect to generate a random number on initial load
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { // This is line 17 in the current problem description
-    generateNumber();
-  }, []); // Empty dependency array means this runs once on mount
-
   // Function to generate a random number within the specified range
-  const generateNumber = () => {
+  // Wrapped in useCallback to ensure its reference is stable
+  const generateNumber = useCallback(() => {
     // Clear any previous errors
     setError('');
 
@@ -43,7 +38,13 @@ const App = () => {
     // We scale it to the desired range and use Math.floor to get an integer
     const newRandomNumber = Math.floor(Math.random() * (numMax - numMin + 1)) + numMin;
     setRandomNumber(newRandomNumber);
-  };
+  }, [min, max]); // generateNumber depends on min and max, so they are its dependencies
+
+  // Effect to generate a random number on initial load
+  // Now generateNumber is a stable dependency thanks to useCallback
+  useEffect(() => {
+    generateNumber();
+  }, [generateNumber]); // generateNumber is now correctly included as a dependency
 
   // Function to change background gradient (for testing different colors)
   const changeBackground = (gradientClass) => {
