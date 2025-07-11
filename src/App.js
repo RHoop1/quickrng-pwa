@@ -41,7 +41,10 @@ function App() {
   }, []); // Empty dependency array means this runs once on mount
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-indigo-900 text-white flex flex-col items-center justify-center p-4 font-inter relative">
+    // This is the ONLY line changed for layout.
+    // Removed 'justify-center' to allow content to flow naturally on smaller screens,
+    // preventing it from being pushed off-screen. Added 'pt-8' and 'pb-8' for consistent padding.
+    <div className="min-h-screen bg-gradient-to-br from-purple-700 to-indigo-900 text-white flex flex-col items-center p-4 font-inter relative pt-8 pb-8">
       {/* Main Application Content Box */}
       <div className="bg-purple-800 bg-opacity-70 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-purple-600">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-purple-200 drop-shadow-lg">
