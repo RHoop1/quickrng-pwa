@@ -150,6 +150,38 @@ const App = () => {
              data-full-width-responsive="true"></ins>
         {/* The AdSense push is now handled in a useEffect for better control */}
       </div>
+        {/* About Button - Placed to flow with content, not absolutely positioned to avoid conflicts */}
+      <button
+        onClick={() => setShowAboutModal(true)}
+        className="mt-8 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-purple-800 text-sm"
+      >
+        About
+      </button>
+
+      {/* About Modal */}
+      {showAboutModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+          <div className="bg-purple-800 bg-opacity-90 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-purple-600 relative">
+            <h2 className="text-2xl font-bold mb-4 text-purple-200">About QuickRNG</h2>
+            <p className="text-purple-100 mb-4 text-sm md:text-base">
+              Welcome to the world's fastest RNG application!
+              If you're using mobile, you can add it to your Home Screen for quick access.
+            </p>
+            <p className="text-purple-100 mb-6 text-sm md:text-base">
+              If you have any questions, comments, or suggestions, please email me at{' '}
+              <a href="mailto:rynoman08@yahoo.com" className="text-purple-300 hover:text-purple-400 underline">
+                rynoman08@yahoo.com
+              </a>.
+            </p>
+            <button
+              onClick={() => setShowAboutModal(false)}
+              className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-purple-800 text-sm"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
