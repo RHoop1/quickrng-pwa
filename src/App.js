@@ -9,6 +9,8 @@ const App = () => {
   const [error, setError] = useState(''); // Stores any error messages
   // State for background gradient, allowing for dynamic changes
   const [backgroundGradient, setBackgroundGradient] = useState('from-purple-600 to-blue-500');
+  // State for modal visibility
+  const [showAboutModal, setShowAboutModal] = useState(false); // Added missing state for About modal
 
   // Function to generate a random number within the specified range
   // Wrapped in useCallback to ensure its reference is stable
@@ -52,7 +54,7 @@ const App = () => {
     setBackgroundGradient(gradientClass);
   };
 
-  // Effect to load AdSense ads when the component mounts
+  // Effect to load AdSense ads when the component mounts or when modal state changes
   useEffect(() => {
     try {
       if (window.adsbygoogle && window.adsbygoogle.push) {
@@ -61,11 +63,13 @@ const App = () => {
     } catch (e) {
       console.error("AdSense push error:", e);
     }
-  }, []); // Empty dependency array means this runs once on mount
+  }, [showAboutModal]); // Added showAboutModal to dependencies to potentially refresh ads
 
   return (
     // Main container with responsive flexbox properties
-    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} bg-black flex flex-col items-center justify-center p-4 font-inter text-white`}>
+    // Removed 'bg-black' to allow the gradient to show
+    // Added 'pt-8' and 'pb-16' for consistent padding, allowing content to flow naturally on mobile
+    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} flex flex-col items-center p-4 font-inter text-white`}>
       {/* App Title */}
       <h1 className="text-5xl font-extrabold mb-8 drop-shadow-lg">QuickRNG</h1>
 
@@ -163,40 +167,67 @@ const App = () => {
         >
           Slate-Zinc
         </button>
-
       </div>
 
-    return (
-  <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} bg-black flex flex-col items-center justify-center p-4 font-inter text-white`}>
-    
-    {/* ... all your other components ... */}
-
-    {/* AdSense Banner */}
-    <div
-      className="mt-8 w-full max-w-sm text-center"
-      style={{
-        backgroundColor: 'transparent',
-        overflow: 'hidden',
-        padding: 0,
-        margin: 0
-      }}
-    >
-      <ins
-        className="adsbygoogle"
+      {/* AdSense Banner - Ensure this is correctly placed and styled */}
+      <div
+        className="mt-8 w-full max-w-sm text-center"
         style={{
-          display: 'block',
           backgroundColor: 'transparent',
-          width: '100%',
-          height: '100%'
+          overflow: 'hidden',
+          padding: 0,
+          margin: 0
         }}
-        data-ad-client="ca-pub-4901144288089010"
-        data-ad-slot="2124522262"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </div>
+      >
+        <ins
+          className="adsbygoogle"
+          style={{
+            display: 'block',
+            backgroundColor: 'transparent',
+            width: '100%',
+            height: '100%'
+          }}
+          data-ad-client="ca-pub-4901144288089010"
+          data-ad-slot="YOUR_AD_SLOT_ID" // Replace with your actual ad slot ID
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+      </div>
 
-  </div> // ← This closes the main container
-);
+      {/* About Button - Placed to flow with content, not absolutely positioned to avoid conflicts */}
+      <button
+        onClick={() => setShowAboutModal(true)}
+        className="mt-8 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-purple-800 text-sm"
+      >
+        About
+      </button>
+
+      {/* About Modal */}
+      {showAboutModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+          <div className="bg-purple-800 bg-opacity-90 backdrop-blur-md p-6 rounded-2xl shadow-2xl max-w-sm w-full text-center border border-purple-600 relative">
+            <h2 className="text-2xl font-bold mb-4 text-purple-200">About QuickRNG</h2>
+            <p className="text-purple-100 mb-4 text-sm md:text-base">
+              Welcome to the world's fastest RNG application!
+              If you're using mobile, you can add it to your Home Screen for quick access.
+            </p>
+            <p className="text-purple-100 mb-6 text-sm md:text-base">
+              If you have any questions, comments, or suggestions, please email me at{' '}
+              <a href="mailto:rynoman08@yahoo.com" className="text-purple-300 hover:text-purple-400 underline">
+                rynoman08@yahoo.com
+              </a>.
+            </p>
+            <button
+              onClick={() => setShowAboutModal(false)}
+              className="bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-purple-800 text-sm"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default App;
