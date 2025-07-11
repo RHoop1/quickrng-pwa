@@ -138,6 +138,31 @@ const App = () => {
         >
           Dark Gray
         </button>
+        <button
+          onClick={() => changeBackground('from-indigo-500 to-pink-500')}
+          className="bg-gradient-to-r from-indigo-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow-md hover:scale-105 transition-transform"
+        >
+          Indigo-Pink
+        </button>
+        <button
+          onClick={() => changeBackground('from-cyan-400 to-blue-600')}
+          className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white text-xs px-3 py-1 rounded-full shadow-md hover:scale-105 transition-transform"
+        >
+          Cyan-Blue
+        </button>
+        <button
+          onClick={() => changeBackground('from-amber-400 to-lime-500')}
+          className="bg-gradient-to-r from-amber-400 to-lime-500 text-white text-xs px-3 py-1 rounded-full shadow-md hover:scale-105 transition-transform"
+        >
+          Amber-Lime
+        </button>
+        <button
+          onClick={() => changeBackground('from-slate-700 to-zinc-800')}
+          className="bg-gradient-to-r from-slate-700 to-zinc-800 text-white text-xs px-3 py-1 rounded-full shadow-md hover:scale-105 transition-transform"
+        >
+          Slate-Zinc
+        </button>
+
       </div>
 
       {/* AdSense Banner - Ensure this is correctly placed and styled */}
@@ -145,7 +170,7 @@ const App = () => {
         <ins className="adsbygoogle"
              style={{ display: 'block' }}
              data-ad-client="ca-pub-4901144288089010"
-             data-ad-slot="YOUR_AD_SLOT_ID" // Replace with your actual ad slot ID
+             data-ad-slot="2124522262" // Replace with your actual ad slot ID
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         {/* The AdSense push is now handled in a useEffect for better control */}
