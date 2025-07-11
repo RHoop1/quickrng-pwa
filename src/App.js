@@ -166,8 +166,13 @@ const App = () => {
 
       </div>
 
-      {/* AdSense Banner - Ensure this is correctly placed and styled */}
-        <div
+    return (
+  <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} bg-black flex flex-col items-center justify-center p-4 font-inter text-white`}>
+    
+    {/* ... all your other components ... */}
+
+    {/* AdSense Banner */}
+    <div
       className="mt-8 w-full max-w-sm text-center"
       style={{
         backgroundColor: 'transparent',
@@ -191,9 +196,7 @@ const App = () => {
       ></ins>
     </div>
 
-    </div>
-    </div>
-  );
-};
+  </div> // ← This closes the main container
+);
 
 export default App;
