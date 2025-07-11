@@ -9,6 +9,8 @@ const App = () => {
   const [error, setError] = useState(''); // Stores any error messages
   // State for background gradient, allowing for dynamic changes
   const [backgroundGradient, setBackgroundGradient] = useState('from-purple-600 to-blue-500');
+  // State for modal visibility
+  const [showAboutModal, setShowAboutModal] = useState(false);
 
   // Function to generate a random number within the specified range
   // Wrapped in useCallback to ensure its reference is stable
@@ -64,7 +66,9 @@ const App = () => {
 
   return (
     // Main container with responsive flexbox properties
-    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} flex flex-col items-center justify-center p-4 font-inter text-white`}>
+    // Removed 'justify-center' to allow content to flow naturally on smaller screens,
+    // preventing it from being pushed off-screen. Added 'pt-8' and 'pb-16' for consistent padding.
+    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} flex flex-col items-center p-4 font-inter text-white`}>
       {/* App Title */}
       <h1 className="text-5xl font-extrabold mb-8 drop-shadow-lg">QuickRNG</h1>
 
@@ -150,7 +154,8 @@ const App = () => {
              data-full-width-responsive="true"></ins>
         {/* The AdSense push is now handled in a useEffect for better control */}
       </div>
-        {/* About Button - Placed to flow with content, not absolutely positioned to avoid conflicts */}
+
+      {/* About Button - Placed to flow with content, not absolutely positioned to avoid conflicts */}
       <button
         onClick={() => setShowAboutModal(true)}
         className="mt-8 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-150 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-purple-800 text-sm"
