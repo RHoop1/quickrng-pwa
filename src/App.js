@@ -167,16 +167,30 @@ const App = () => {
       </div>
 
       {/* AdSense Banner - Ensure this is correctly placed and styled */}
-      <div className="mt-8 w-full max-w-sm text-center bg-transparent">
-        <div className="bg-transparent">
-        <ins className="adsbygoogle"
-             style={{ display: 'block' }}
-             data-ad-client="ca-pub-4901144288089010"
-             data-ad-slot="2124522262" // Replace with your actual ad slot ID
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        {/* The AdSense push is now handled in a useEffect for better control */}
-      </div>
+        <div
+      className="mt-8 w-full max-w-sm text-center"
+      style={{
+        backgroundColor: 'transparent',
+        overflow: 'hidden',
+        padding: 0,
+        margin: 0
+      }}
+    >
+      <ins
+        className="adsbygoogle"
+        style={{
+          display: 'block',
+          backgroundColor: 'transparent',
+          width: '100%',
+          height: '100%'
+        }}
+        data-ad-client="ca-pub-4901144288089010"
+        data-ad-slot="2124522262"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+
     </div>
     </div>
   );
