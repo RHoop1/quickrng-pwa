@@ -166,7 +166,8 @@ const App = () => {
       </div>
 
       {/* AdSense Banner - Ensure this is correctly placed and styled */}
-      <div className="mt-8 w-full max-w-sm text-center">
+      <div className="mt-8 w-full max-w-sm text-center bg-transparent">
+        <div className="bg-transparent">
         <ins className="adsbygoogle"
              style={{ display: 'block' }}
              data-ad-client="ca-pub-4901144288089010"
@@ -175,6 +176,7 @@ const App = () => {
              data-full-width-responsive="true"></ins>
         {/* The AdSense push is now handled in a useEffect for better control */}
       </div>
+    </div>
     </div>
   );
 };
