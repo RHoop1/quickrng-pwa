@@ -48,6 +48,7 @@ const App = () => {
 
   // Function to change background gradient
   const changeBackground = (gradientClass) => {
+    console.log("Current gradient:", gradientClass);
     setBackgroundGradient(gradientClass);
   };
 
@@ -64,7 +65,7 @@ const App = () => {
 
   return (
     // Main container with responsive flexbox properties
-    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} flex flex-col items-center justify-center p-4 font-inter text-white`}>
+    <div className={`min-h-screen bg-gradient-to-br ${backgroundGradient} bg-black flex flex-col items-center justify-center p-4 font-inter text-white`}>
       {/* App Title */}
       <h1 className="text-5xl font-extrabold mb-8 drop-shadow-lg">QuickRNG</h1>
 
